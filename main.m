@@ -80,7 +80,6 @@
     [window makeKeyAndOrderFront:nil];
     [window makeFirstResponder:passwordField];
 }
-}
 
 - (void)okClicked:(id)sender
 {
