@@ -5,7 +5,7 @@ CATEGORIES=	security
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Graphical sudo password prompt using GNUstep
-WWW=		https://github.com/probonopd/sudoaskpass
+WWW=		https://github.com/probonopd/SudoAskPass
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -15,7 +15,7 @@ USE_GNUSTEP=	base gui
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	probonopd
-GH_PROJECT=	sudoaskpass
+GH_PROJECT=	SudoAskPass
 GH_TAGNAME=	main
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
