@@ -1,0 +1,10 @@
+SudoAskPass is a graphical sudo password prompt application built using GNUstep
+for FreeBSD systems. It provides a clean, simple interface for entering sudo
+passwords when using the SUDO_ASKPASS environment variable.
+
+Features:
+- Clean graphical interface using GNUstep
+- Secure password input field
+- Keyboard shortcuts support (Enter/Escape)
+- Floating window that stays on top
+- Full compatibility with sudo's SUDO_ASKPASS mechanism
