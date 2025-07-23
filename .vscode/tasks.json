@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "bash -c '. /usr/local/GNUstep/System/Makefiles/GNUstep.sh; gmake'"
+            "command": "gmake"
         }
     ]
 }
