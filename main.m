@@ -87,7 +87,7 @@
         exit(1);
     }
     
-    [window setTitle:@"Sudo Password"];
+    [window setTitle:@"Password"];
     [window center];
     [window setLevel:NSFloatingWindowLevel]; // Keep window on top
     
@@ -97,7 +97,7 @@
     // Create prompt label
     NSRect promptRect = NSMakeRect(20, 90, 360, 30);
     promptLabel = [[NSTextField alloc] initWithFrame:promptRect];
-    [promptLabel setStringValue:@"Enter your password for sudo:"];
+    [promptLabel setStringValue:@"Enter your password:"];
     [promptLabel setBezeled:NO];
     [promptLabel setDrawsBackground:NO];
     [promptLabel setEditable:NO];  // Fix: should not be editable
