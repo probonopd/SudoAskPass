@@ -33,7 +33,7 @@ SudoAskPass provides a graphical interface for sudo password prompts, compatible
 Set the SUDO_ASKPASS environment variable to point to the SudoAskPass binary:
 
 ```bash
-export SUDO_ASKPASS=/usr/local/bin/SudoAskPass.app/SudoAskPass
+export SUDO_ASKPASS=/System/Library/CoreServices/SudoAskPass.app/SudoAskPass
 sudo -A your-command
 ```
 

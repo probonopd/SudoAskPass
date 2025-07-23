@@ -5,3 +5,5 @@ SudoAskPass_OBJC_FILES = main.m
 SudoAskPass_RESOURCE_FILES = 
 
 include $(GNUSTEP_MAKEFILES)/application.make
+
+GNUSTEP_APPS=$(GNUSTEP_SYSTEM_LIBRARY)/CoreServices
