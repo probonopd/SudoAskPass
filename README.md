@@ -49,4 +49,4 @@ This will set up the environment and provide instructions for testing with sudo.
 
 ## Installation
 
-The application installs to `/usr/local/bin/SudoAskPass` by default when using `make install`.
+The application installs to `/usr/local/bin/SudoAskPass.app` by default when using `make install`.
