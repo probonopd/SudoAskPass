@@ -71,8 +71,19 @@
 {
     // Get the command from environment variable
     NSString *sudoCommand = [[[NSProcessInfo processInfo] environment] objectForKey:@"SUDO_COMMAND"];
-    if (!sudoCommand) {
-        sudoCommand = @"(command not available)";
+    
+    if (!sudoCommand || [sudoCommand length] == 0) {
+        // Try alternative environment variable names that might be used
+        sudoCommand = [[[NSProcessInfo processInfo] environment] objectForKey:@"SUDO_COMMAND_LINE"];
+        if (!sudoCommand || [sudoCommand length] == 0) {
+            // Check command line arguments as fallback
+            NSArray *args = [[NSProcessInfo processInfo] arguments];
+            if ([args count] > 1) {
+                sudoCommand = [NSString stringWithFormat:@"Arguments: %@", [args componentsJoinedByString:@" "]];
+            } else {
+                sudoCommand = @"(command not available - SUDO_COMMAND not set)";
+            }
+        }
     }
     
     // Create window with initial size (compact mode)
@@ -87,7 +98,7 @@
         exit(1);
     }
     
-    [window setTitle:@"Password"];
+    [window setTitle:@"Sudo Password"];
     [window center];
     [window setLevel:NSFloatingWindowLevel]; // Keep window on top
     
@@ -97,7 +108,7 @@
     // Create prompt label
     NSRect promptRect = NSMakeRect(20, 90, 360, 30);
     promptLabel = [[NSTextField alloc] initWithFrame:promptRect];
-    [promptLabel setStringValue:@"Enter your password:"];
+    [promptLabel setStringValue:@"Enter your password for sudo:"];
     [promptLabel setBezeled:NO];
     [promptLabel setDrawsBackground:NO];
     [promptLabel setEditable:NO];  // Fix: should not be editable
@@ -241,27 +252,27 @@
             newFrame = NSMakeRect(currentFrame.origin.x, currentFrame.origin.y - 80, 400, 230);
             [detailsButton setTitle:@"Hide Details"];
             
-            // Adjust positions for expanded view
+            // Adjust positions for expanded view - password field moves down
             [passwordField setFrame:NSMakeRect(20, 140, 360, 22)];
             [promptLabel setFrame:NSMakeRect(20, 170, 360, 30)];
             [commandScrollView setFrame:NSMakeRect(20, 55, 360, 80)];
             [commandScrollView setHidden:NO];
             
-            // Move buttons down
+            // Buttons stay at bottom
             [detailsButton setFrame:NSMakeRect(20, 20, 80, 30)];
             [cancelButton setFrame:NSMakeRect(220, 20, 80, 30)];
             [okButton setFrame:NSMakeRect(310, 20, 80, 30)];
         } else {
-            // Collapse window to hide details
+            // Collapse window to hide details - RESET to original compact positions
             newFrame = NSMakeRect(currentFrame.origin.x, currentFrame.origin.y + 80, 400, 150);
             [detailsButton setTitle:@"Details"];
             
-            // Adjust positions for compact view
-            [passwordField setFrame:NSMakeRect(20, 60, 360, 22)];
-            [promptLabel setFrame:NSMakeRect(20, 90, 360, 30)];
+            // IMPORTANT: Reset to original compact view positions exactly as in showPasswordDialog
+            [promptLabel setFrame:NSMakeRect(20, 90, 360, 30)];  // Original position
+            [passwordField setFrame:NSMakeRect(20, 60, 360, 22)]; // Original position
             [commandScrollView setHidden:YES];
             
-            // Move buttons up
+            // Reset buttons to original positions
             [detailsButton setFrame:NSMakeRect(20, 20, 80, 30)];
             [cancelButton setFrame:NSMakeRect(220, 20, 80, 30)];
             [okButton setFrame:NSMakeRect(310, 20, 80, 30)];

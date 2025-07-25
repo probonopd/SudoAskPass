@@ -2,8 +2,6 @@
 
 A graphical sudo password prompt application for FreeBSD using GNUstep.
 
-<img width="410" height="184" alt="image" src="https://github.com/user-attachments/assets/8766a606-af6c-4296-8e45-691cc3172bed" />
-
 ## Description
 
 SudoAskPass provides a graphical interface for sudo password prompts, compatible with the SUDO_ASKPASS environment variable. This application is built using GNUstep and is designed to work on FreeBSD systems.
@@ -15,8 +13,8 @@ SudoAskPass provides a graphical interface for sudo password prompts, compatible
 - Support for keyboard shortcuts (Enter for OK, Escape for Cancel)
 - Floating window that stays on top
 - Compatible with sudo's SUDO_ASKPASS mechanism
-- Details button to show/hide the command being executed (from SUDO_COMMAND environment variable)
-- Scrollable command display for long commands
+
+**Note:** The SUDO_COMMAND environment variable is set by sudo but may not always be passed to askpass programs. The Details section will show "(command not available - SUDO_COMMAND not set)" when this information is not provided by sudo.
 
 ## Building
 
@@ -33,7 +31,7 @@ SudoAskPass provides a graphical interface for sudo password prompts, compatible
 Set the SUDO_ASKPASS environment variable to point to the SudoAskPass binary:
 
 ```bash
-export SUDO_ASKPASS=/System/Library/CoreServices/SudoAskPass.app/SudoAskPass
+export SUDO_ASKPASS=/System/Library/Tools/SudoAskPass
 sudo -A your-command
 ```
 
@@ -46,7 +44,3 @@ A test script is provided to help verify the functionality:
 ```
 
 This will set up the environment and provide instructions for testing with sudo.
-
-## Installation
-
-The application installs to `/usr/local/bin/SudoAskPass.app` by default when using `make install`.
